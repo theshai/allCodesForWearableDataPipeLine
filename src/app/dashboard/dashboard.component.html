@@ -1,0 +1,30 @@
+<div class="dashboard-container">
+    <h2>Live User Info (Pooling)</h2>
+    
+    <table class="dashboard-table">
+      <thead>
+        <tr>
+          <th>UID</th>
+          <th>User</th>
+          <th>Value</th>
+          <th>Flag</th>
+          <th>Date/Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.uid }}</td>
+          <td>{{ item.user }}</td>
+          <td>{{ item.value }}</td>
+          <td [ngClass]="{'high-flag': item.flag === 'HIGH', 'normal-flag': item.flag === 'NORMAL'}">
+            {{ item.flag || 'N/A' }}
+          </td>
+          <td>{{ item.datetime | date:'medium' }}</td>
+        </tr>
+        <tr *ngIf="!data || data.length === 0">
+          <td colspan="5" class="loading-cell">Loading...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
